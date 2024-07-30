@@ -1,0 +1,91 @@
+Recommender Systems
+-------------------
+Jupiter notebook 
+
+2 Types
+--------
+
+1. Content based
+- it's based on single user
+- if user listens to sad songs, other similar sad songs will be recommended to him
+- here tag's are used to find similarity
+
+2. collaborative filtering
+- if 2 users A & B have high similarity.
+- Eg. they give similar rating to a movie
+- next time, content watched by user A will be suggested to user B also
+
+3. Hybrid filtering
+- combination
+
+project flow 
+------------
+Data -> preprocessing -> ML Model -> Website -> Deploy
+
+20:37
+
+33:03
+
+vectorization
+-------------
+text -> vectors
+techniques for vectorization :
+1. bag of words
+2. tf-idf
+3. word2vec
+
+bag of words
+------------
+1. merge all tags to form a large text(corpus)
+2. find 5000 most common words from it 
+w1,w2,w3.....w5000
+3. now find frequency of w1,w2,w3...w5000 in each tag to form a mx5000 matrix
+where m=no. of movies
+4. each row in this matrix is a vector
+5. to recommend a movie, we can find closet vectors to the given vector
+
+- stop words are not considered in vectorization
+eg. are, and, of, from
+
+cosine similarity
+-----------------
+-used to find similarity btw 2 movies
+- angle = small, high similarity
+
+-enumerate gives a tuple containing movie index, and similarity score
+-since, sorted can jumble movie indexes
+-reverse = True, names movies from last - first
+-enumerate tuple contains 2 elements 
+-2nd element is movie name (x[1])
+
+1:33:35 - front end for recommender system
+1:51:35
+developers.themoviedb.org/3/movies/get-movie-details
+
+https://api.themoviedb.org/3/movie/{65}api_key=<<8265bd1679663a7eal2ac168da84d2e8>>&language=en-US
+
+https://api.themoviedb.org/3/movie/{65}api_key=<<3fe0c25d25ab567c292f423717faaa9a>>&language=en-US
+
+https://api.themoviedb.org/3/movie/65?api_key=3fe0c25d25ab567c292f423717faaa9a
+
+Procfile
+web: sh setup.sh && streamlit run app.py
+
+setup.sh : its a batch file
+mkdir -p ~/.streamlit/
+
+echo "\
+[server]\n\
+port = $PORT\n\
+enableCORS = false\n\
+headless = true\n\
+\n\
+" > ~/.streamlit/config.toml
+
+gitignore
+
+venv
+
+pip freeze > requirements.txt
+
+mrs-campusx.herokuapp.com
